@@ -1,21 +1,20 @@
+const { app, BrowserWindow, dialog } = require("electron");
 
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const path = require("path");
 // import { app, BrowserWindow } from 'electron'
 // import path from 'path'
-// const NODE_ENV = process.env.NODE_ENV
-const NODE_ENV = '123'
+const NODE_ENV = process.env.NODE_ENV;
 
-function createWindow () {
+function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1920,
+    height: 1080,
     webPreferences: {
-      // preload: path.join(__dirname, 'preload.js')
-    }
-  })
-  win.webContents.openDevTools()
-  win.loadFile('./dist/index.html')
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
+  win.webContents.openDevTools();
+  win.loadFile("./dist/index.html");
   // win.loadURL(
   //   NODE_ENV === 'development'
   //   ? 'http://localhost:5173'
@@ -25,20 +24,18 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
-})
+  });
+});
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
-
-
+});
 // https://zhuanlan.zhihu.com/p/423211730 可参考文章
