@@ -13,8 +13,8 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-  win.webContents.openDevTools();
-  win.loadFile("./dist/index.html");
+  // win.webContents.openDevTools();
+  win.loadURL("http://34.92.10.108:8443/?folder=/config/workspace");
   // win.loadURL(
   //   NODE_ENV === 'development'
   //   ? 'http://localhost:5173'
