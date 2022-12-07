@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer,dialog } = require('electron')
 
 contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer) // 挂载到window对象上
 
@@ -12,3 +12,4 @@ window.addEventListener('DOMContentLoaded', () => {
     replaceText(`${type}-version`, process.versions[type])
   }
 })
+ 

@@ -1,17 +1,22 @@
 {
-  "name": "vue_demo",
+  "name": "vs-code-web",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.5",
   "main": "src/main/main.ts",
   "description": "app",
   "author": "kk",
   "scripts": {
-    "dev": "concurrently vite \"pnpm electron:dev\"",
+    "dev": "concurrently vite",
+    "start": "vue-tsc --noEmit && vite build &&  electron .",
     "render:build": "vue-tsc --noEmit && vite build",
-    "main:build": "electron-builder",
-    "build": "pnpm render:build && pnpm main:build",
-    "preview": "vite preview",
-    "electron:dev": "electron ."
+    "win:build": "vue-tsc --noEmit && vite build && electron-builder -w --x64",
+    "mac:build": "vue-tsc --noEmit && vite build && electron-builder -m",
+    "electron:dev": "vue-tsc --noEmit && vite build && electron ."
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
+    "element-plus": "^2.2.18",
+    "sass": "^1.55.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.0",
@@ -30,6 +35,11 @@
     "directories": {
       "buildResources": "assets",
       "output": "dist_electron"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "warningsAsErrors": false
     }
   }
 }
